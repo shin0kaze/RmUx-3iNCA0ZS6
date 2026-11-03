@@ -1,0 +1,45 @@
+# Скомпилированные бинарники и библиотеки
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+
+# Кэш компилятора
+nimcache/
+rnimcache/
+dnimcache/
+
+# Директории для сборки
+bin/
+build/
+dist/
+
+# Пакеты, установленные через Nimble
+.nimble/
+vendor/.nimble/
+
+# Генерируемые файлы
+*.generated.nim
+*.json
+*.log
+
+# Файлы IDE и ОС
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Теги
+tags
+nimble.develop
+nimble.paths
