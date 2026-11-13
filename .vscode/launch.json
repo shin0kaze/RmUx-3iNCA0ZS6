@@ -1,53 +1,53 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-       {
-            "name": "Nim Debug (Windows)",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe", // Для Windows
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb", // Режим отладчика (GDB)
-            "miDebuggerPath": "gdb", // Имя команды gdb. VS Code найдет его в PATH.
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Load Nim pretty printers",
-                    // Укажите ваш путь к скрипту. Обратите внимание на двойные обратные слэши!
-                    "text": "source D:\\nim\\nim-2.2.12_x64\\nim-2.2.12\\tools\\debug\\nim-gdb.py", 
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "nim: build (debug)" // Запускать задачу компиляции перед отладкой
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Nim Debug (Windows)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe", // Для Windows
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb", // Режим отладчика (GDB)
+      "miDebuggerPath": "gdb", // Имя команды gdb. VS Code найдет его в PATH.
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
         },
         {
-            "name": "Nim Debug (Linux)",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}", // Для Linux (без .exe)
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "nim: build (debug)"
+          "description": "Load Nim pretty printers",
+          // Укажите ваш путь к скрипту. Обратите внимание на двойные обратные слэши!
+          "text": "source D:\\nim\\nim-2.2.12_x64\\nim-2.2.12\\tools\\debug\\nim-gdb.py",
+          "ignoreFailures": true
         }
-    ]
+      ],
+      "preLaunchTask": "nim c: build game debug" // Запускать задачу компиляции перед отладкой
+    },
+    {
+      "name": "Nim Debug (Linux)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}", // Для Linux (без .exe)
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "nim c: build game debug"
+    },
+  ]
 }

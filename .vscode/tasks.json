@@ -43,6 +43,26 @@
         "$nim"
       ],
     },
+    // Собрать и запустить
+    {
+      "label": "nim r: build,run game release",
+      "type": "shell",
+      "command": "nim",
+      "args": [
+        "r",
+        "-d:release",
+        "-d:strip",
+        "--out:${workspaceFolder}/bin/${fileBasenameNoExtension}",
+        "${workspaceFolder}/src/main.nim"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$nim"
+      ],
+    },
     //
     // Собрать открытый файл
     {
@@ -80,7 +100,7 @@
     //
     // Запустить тесты для файла
     //
-    // Запустить тесты для файла с отчетом
+    // Запустить тестовую симуляцию с отчетом
     //
     // Очистка папки /bin
     {

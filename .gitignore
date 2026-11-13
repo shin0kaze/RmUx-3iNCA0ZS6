@@ -28,6 +28,9 @@ vendor/.nimble/
 *.generated.nim
 *.json
 *.log
+outputExpected.txt
+outputGotten.txt
+tests/**/megatest.nim
 
 # Файлы IDE и ОС
 .vscode/*
