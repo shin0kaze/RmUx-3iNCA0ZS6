@@ -104,22 +104,19 @@
     //
     // Очистка папки /bin
     {
-      "label": "clean-logs-native",
-      "type": "shell",
+      "label": "clear bin but logs",
+      "type": "process",
       "windows": {
         "command": "powershell",
         "args": [
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
           "-Command",
-          "Remove-Item -Path './bin' -Recurse -Force -ErrorAction SilentlyContinue"
+          "Get-ChildItem -Path bin\\* -Force -Exclude logs -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue"
         ]
       },
-      "linux": {
-        "command": "rm",
-        "args": [
-          "-rf",
-          "./bin/logs"
-        ]
-      }
+      "linux": {}
     },
   ]
 }
