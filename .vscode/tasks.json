@@ -1,14 +1,57 @@
 {
   "version": "2.0.0",
   "tasks": [
+    //
+    // Собрать проект для отладки
     {
-      "label": "nim: build (debug)",
+      "label": "nim c: build game debug",
       "type": "shell",
       "command": "nim",
       "args": [
         "c",
         "--debugger:native", // Включить поддержку отладчика
-        //"-g", // Генерировать отладочные символы (DWARF)
+        "-g", // Генерировать отладочные символы (DWARF)
+        "--out:${workspaceFolder}/bin/${fileBasenameNoExtension}", // Путь к выходному файлу
+        "${workspaceFolder}/src/main.nim"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$nim"
+      ],
+    },
+    //
+    // Собрать проект для релиза
+    {
+      "label": "nim c: build game release",
+      "type": "shell",
+      "command": "nim",
+      "args": [
+        "c",
+        "-d:release",
+        "-d:strip",
+        "--out:${workspaceFolder}/bin/${fileBasenameNoExtension}",
+        "${workspaceFolder}/src/main.nim"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$nim"
+      ],
+    },
+    //
+    // Собрать открытый файл
+    {
+      "label": "nim c: build file debug",
+      "type": "shell",
+      "command": "nim",
+      "args": [
+        "c",
+        "--debugger:native", // Включить поддержку отладчика
         "--out:${workspaceFolder}/bin/${fileBasenameNoExtension}", // Путь к выходному файлу
         "${file}"
       ],
@@ -19,26 +62,44 @@
       "problemMatcher": [
         "$nim"
       ],
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-      }
     },
+    //
+    // Запустить все тесты
     {
       "label": "nim: run tests",
       "type": "shell",
-      "command": "nim",
+      "command": "testament",
       "args": [
-        "test",
-        "${workspaceFolder}/tests/all.nim"
+        "all",
       ],
       "group": {
         "kind": "test",
         "isDefault": true
       },
-      "problemMatcher": []
-    }
+    },
+    //
+    // Запустить тесты для файла
+    //
+    // Запустить тесты для файла с отчетом
+    //
+    // Очистка папки /bin
+    {
+      "label": "clean-logs-native",
+      "type": "shell",
+      "windows": {
+        "command": "powershell",
+        "args": [
+          "-Command",
+          "Remove-Item -Path './bin' -Recurse -Force -ErrorAction SilentlyContinue"
+        ]
+      },
+      "linux": {
+        "command": "rm",
+        "args": [
+          "-rf",
+          "./bin/logs"
+        ]
+      }
+    },
   ]
 }
